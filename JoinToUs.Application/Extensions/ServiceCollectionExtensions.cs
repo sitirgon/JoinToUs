@@ -1,4 +1,6 @@
-﻿using JoinToUs.Application.Mappings;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using JoinToUs.Application.Mappings;
 using JoinToUs.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,8 +17,12 @@ namespace JoinToUs.Application.Extensions
         {
             services.AddScoped<IJoinToUsService, JoinToUsService>();
 
-            services.AddAutoMapper(typeof(UsersProfile));
-            services.AddAutoMapper(typeof(PasswordProfile));
+            services.AddAutoMapper(typeof(CreateUserProfile));
+
+
+            services.AddValidatorsFromAssemblyContaining<CreateUserProfile>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 }

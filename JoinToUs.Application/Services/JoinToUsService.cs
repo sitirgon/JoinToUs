@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using JoinToUs.Application.EntitiesDto;
+using JoinToUs.Application.EntitiesDto.CreateUser;
 using JoinToUs.Domain.Entities.User;
 using JoinToUs.Domain.Interfaces;
 using System;
@@ -21,12 +21,11 @@ namespace JoinToUs.Application.Services
             this.mapper = mapper;
         }
 
-        public async Task Create(UsersDto userDto, PasswordDto passwordsDto)
+        public async Task Create(CreateUserDto createUserDto)
         {
-            var user = mapper.Map<Users>(userDto);
-            var passwords = mapper.Map<Passwords>(passwordsDto);
+            var user = mapper.Map<Users>(createUserDto);
 
-            user.PasswordHash = new List<Passwords> { passwords };
+            //user.PasswordHash = new List<Passwords> { passwords };
 
             await joinToUsRepository.Create(user);
         }

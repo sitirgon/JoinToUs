@@ -1,4 +1,9 @@
-﻿<h1>Create User for JoinToUs</h1>
+﻿@using JoinToUs.Application.EntitiesDto.CreateUser;
+
+
+@model CreateUserDto
+
+<h1>Create User for JoinToUs</h1>
 
 <hr />
 
@@ -7,22 +12,22 @@
         <form action="/JoinToUs/Create" method="post">
             <div class="form-group mb-3">
                 <label class="control-label" for="Username">Username</label>
-                <input class="form-control" type="text" id="Username" name="User.Username" />
+                <input class="form-control" type="text" id="Username" name="Username" />
             </div>
 
             <div class="form-group mb-3">
                 <label class="control-label" for="Email">Email</label>
-                <input class="form-control" type="text" id="Email" name="User.Email" />
+                <input class="form-control" type="text" id="Email" name="Email" />
             </div>
 
             <div class="form-group mb-3">
                 <label class="control-label" for="PhoneNumber">PhoneNumber</label>
-                <input class="form-control" type="text" id="PhoneNumber" name="User.PhoneNumber" />
+                <input class="form-control" type="text" id="PhoneNumber" name="PhoneNumber" />
             </div>
 
             <div class="form-group mb-3">
                 <label class="control-label" for="Password">Password</label>
-                <input class="form-control" type="password" id="Password" name="Password.PasswordHash" />
+                <input class="form-control" type="password" id="Password" name="PasswordHash" />
             </div>
 
             <div class="form-group mb-3">
@@ -31,3 +36,10 @@
         </form>
     </div>
 </div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,4 +1,4 @@
-﻿using JoinToUs.Application.EntitiesDto;
+﻿using JoinToUs.Application.EntitiesDto.CreateUser;
 using JoinToUs.Application.Services;
 using JoinToUs.Domain.Entities.User;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +19,9 @@ namespace JoinToUsController.MVC
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UsersDto user, PasswordDto password)
+        public async Task<IActionResult> Create(CreateUserDto createUserDto)
         {
-            await joinToUsService.Create(user, password);
+            await joinToUsService.Create(createUserDto);
             return RedirectToAction(nameof(Create));
         }
     }

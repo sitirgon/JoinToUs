@@ -1,4 +1,4 @@
-﻿using JoinToUs.Application.EntitiesDto;
+﻿using JoinToUs.Application.EntitiesDto.CreateUser;
 using JoinToUs.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,6 @@ namespace JoinToUs.Application.Services
 {
     public interface IJoinToUsService
     {
-        Task Create(UsersDto user, PasswordDto passwords);
+        Task Create(CreateUserDto createUserDto);
     }
 }
