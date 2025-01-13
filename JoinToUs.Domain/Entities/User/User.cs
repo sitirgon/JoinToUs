@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace JoinToUs.Domain.Entities.User
 {
-    public class Users : BaseEntity
+    public class User : BaseEntity
     {
-        public Users() 
+        public User()
         {
-            PasswordHash = new List<Passwords>();
+            
         }
-        public required string UserName { get; set; } 
-        public required string Email { get; set; }
+        public string UserName { get; set; } 
+        public string Email { get; set; }
         public string? Description { get; set; }
         public string? PhoneNumber { get; set; }
-        public ICollection<Passwords> PasswordHash { get; set; }
+        public ICollection<Password> PasswordHash { get; set; }
     }
 }

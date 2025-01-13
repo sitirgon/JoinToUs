@@ -9,6 +9,8 @@ namespace JoinToUs.Domain.Interfaces
 {
     public interface IJoinToUsRepository
     {
-        Task Create(Users user);
+        Task Create(User user);
+        Task<User?> GetUserByUserName(string username);
+        Task<IEnumerable<User>> GetAll();
     }
 }

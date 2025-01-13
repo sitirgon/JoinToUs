@@ -14,7 +14,7 @@ namespace JoinToUs.Infrastructure.Presistence
         {
 
         }
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Passwords> Passwords { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Password> Passwords { get; set; }
     }
 }

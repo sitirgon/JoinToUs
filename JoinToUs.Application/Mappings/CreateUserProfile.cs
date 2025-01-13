@@ -14,9 +14,12 @@ namespace JoinToUs.Application.Mappings
     {
         public CreateUserProfile()
         {
-            CreateMap<CreateUserDto, Users>()
-                .ForMember(e => e.PasswordHash, opt => opt.MapFrom(src => new Pas
-                  }));
+            CreateMap<CreateUserDto, User>()
+                .ForMember(e => e.PasswordHash, opt => opt.MapFrom(src => new List<Password>
+                { new Password() {PasswordHash = src.PasswordHash } }));
+
+            CreateMap<User, CreateUserDto>()
+                .ForMember(e => e.PasswordHash, opt => opt.MapFrom(src => src.PasswordHash.First().PasswordHash));
         }
     }
 }

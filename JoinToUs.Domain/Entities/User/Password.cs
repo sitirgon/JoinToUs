@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace JoinToUs.Domain.Entities.User
 {
-    public class Passwords: BaseEntity
+    public class Password: BaseEntity
     {
         public required string PasswordHash { get; set; }
         public string Salt { get; set; } = Path.GetRandomFileName().Replace(".", "");
         public Guid UserId { get; set; }
-        public Users User { get; set; }
+        public User User { get; set; }
     }
 }

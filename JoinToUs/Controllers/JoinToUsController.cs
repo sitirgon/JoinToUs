@@ -13,6 +13,11 @@ namespace JoinToUsController.MVC
             this.joinToUsService = joinToUsService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var users = joinToUsService.GetAll();
+            return View(users);
+        }
         public IActionResult Create() 
         {
             return View();
@@ -21,6 +26,10 @@ namespace JoinToUsController.MVC
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserDto createUserDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createUserDto);
+            }
             await joinToUsService.Create(createUserDto);
             return RedirectToAction(nameof(Create));
         }

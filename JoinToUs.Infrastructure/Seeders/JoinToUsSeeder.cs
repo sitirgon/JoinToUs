@@ -23,19 +23,18 @@ namespace JoinToUs.Infrastructure.Seeders
             {
                 if (!ctx.Users.Any())
                 {
-                    var adminUser = new Users()
+                    var adminUser = new User()
                     {
                         UserName = "admin",
                         Email = "admin",
                         IsDeleted = false,
                         CreatedAt = DateTime.Now
                     };
-                    var adminPassword = new Passwords()
+                    var adminPassword = new Password()
                     {
-                        PasswordHash = "admin",
-                        UserId = adminUser.Id
+                        PasswordHash = "admin"
                     };
-                    adminUser.PasswordHash = new List<Passwords> { adminPassword };
+                    adminUser.PasswordHash = new List<Password> { adminPassword };
 
                     ctx.Users.Add(adminUser);
                     await ctx.SaveChangesAsync();

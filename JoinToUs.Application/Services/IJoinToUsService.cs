@@ -11,5 +11,6 @@ namespace JoinToUs.Application.Services
     public interface IJoinToUsService
     {
         Task Create(CreateUserDto createUserDto);
+        Task<IEnumerable<CreateUserDto>> GetAll();
     }
 }

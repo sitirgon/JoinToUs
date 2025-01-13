@@ -11,23 +11,27 @@
     <div class="col-md-4">
         <form action="/JoinToUs/Create" method="post">
             <div class="form-group mb-3">
-                <label class="control-label" for="Username">Username</label>
-                <input class="form-control" type="text" id="Username" name="Username" />
+                <label class="control-label" asp-for="UserName">UserName</label>
+                <input class="form-control" type="text" id="UserName" asp-for="UserName" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" for="Email">Email</label>
+                <label class="control-label" asp-for="Email">Email</label>
                 <input class="form-control" type="text" id="Email" name="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" for="PhoneNumber">PhoneNumber</label>
-                <input class="form-control" type="text" id="PhoneNumber" name="PhoneNumber" />
+                <label class="control-label" asp-for="PhoneNumber">PhoneNumber</label>
+                <input class="form-control" type="text" id="PhoneNumber" asp-for="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" for="Password">Password</label>
-                <input class="form-control" type="password" id="Password" name="PasswordHash" />
+                <label class="control-label" asp-for="PasswordHash">Password</label>
+                <input class="form-control" type="password" id="Password" asp-for="PasswordHash" />
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">

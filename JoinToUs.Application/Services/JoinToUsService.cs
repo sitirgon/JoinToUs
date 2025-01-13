@@ -23,11 +23,17 @@ namespace JoinToUs.Application.Services
 
         public async Task Create(CreateUserDto createUserDto)
         {
-            var user = mapper.Map<Users>(createUserDto);
-
-            //user.PasswordHash = new List<Passwords> { passwords };
+            var user = mapper.Map<User>(createUserDto);
 
             await joinToUsRepository.Create(user);
+        }
+
+        public async Task<IEnumerable<CreateUserDto>> GetAll()
+        {
+            var users = await joinToUsRepository.GetAll();
+            var dtos = mapper.Map<IEnumerable<CreateUserDto>>(users);
+
+            return dtos;
         }
     }
 }
