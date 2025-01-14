@@ -15,7 +15,7 @@ namespace JoinToUsController.MVC
 
         public async Task<IActionResult> Index()
         {
-            var users = joinToUsService.GetAll();
+            var users = await joinToUsService.GetAll();
             return View(users);
         }
         public IActionResult Create() 
@@ -31,7 +31,7 @@ namespace JoinToUsController.MVC
                 return View(createUserDto);
             }
             await joinToUsService.Create(createUserDto);
-            return RedirectToAction(nameof(Create));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

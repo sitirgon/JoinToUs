@@ -26,15 +26,16 @@ namespace JoinToUs.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<User>> GetAll()
-            => (IEnumerable<User>)await (from user in ctx.Users
-                      join password in ctx.Passwords on user.Id equals password.UserId
-                      select new
-                      {
-                          user.UserName,
-                          user.Email,
-                          user.PhoneNumber,
-                          password.PasswordHash
-                      }).ToListAsync();
+           => await (from user in ctx.Users
+                              join password in ctx.Passwords on user.Id equals password.UserId
+                              select new User
+                              {
+                                  UserName = user.UserName,
+                                  Email = user.Email,
+                                  PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : "Empty",
+                                  PasswordHash = new List<Password> { new Password() { PasswordHash = password.PasswordHash } }
+                              }  
+                              ).ToListAsync();
 
         public Task<User?> GetUserByUserName(string username)
             => ctx.Users.FirstOrDefaultAsync(c => c.UserName.ToLower() == username.ToLower());
