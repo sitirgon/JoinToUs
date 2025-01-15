@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using JoinToUs.Application.JoinToUs.Command.CreateUserCommand;
 using JoinToUs.Application.Mappings;
-using JoinToUs.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,8 @@ namespace JoinToUs.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IJoinToUsService, JoinToUsService>();
+            services.AddMediatR(cfg => 
+                cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
 
             services.AddAutoMapper(typeof(CreateUserProfile));
 

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using JoinToUs.Application.EntitiesDto.CreateUser;
 using JoinToUs.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinToUs.Application.EntitiesDto.CreateUser
+namespace JoinToUs.Application.JoinToUs.Command.CreateUserCommand
 {
-    public class CreateUserValidator: AbstractValidator<CreateUserDto>
+    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
-        public CreateUserValidator(IJoinToUsRepository repo)
+        public CreateUserCommandValidator(IJoinToUsRepository repo)
         {
             RuleFor(c => c.UserName)
                 .NotEmpty()

@@ -1,34 +1,26 @@
 ﻿using AutoMapper;
 using JoinToUs.Application.EntitiesDto.CreateUser;
-using JoinToUs.Domain.Entities.User;
 using JoinToUs.Domain.Interfaces;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinToUs.Application.Services
+namespace JoinToUs.Application.JoinToUs.Queries.GetAllUsers
 {
-    public class JoinToUsService: IJoinToUsService
+    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<CreateUserDto>>
     {
-        private readonly IJoinToUsRepository joinToUsRepository;
         private readonly IMapper mapper;
+        private readonly IJoinToUsRepository joinToUsRepository;
 
-        public JoinToUsService(IJoinToUsRepository joinToUsRepository, IMapper mapper)
+        public GetAllUsersQueryHandler(IJoinToUsRepository joinToUsRepository, IMapper mapper)
         {
             this.joinToUsRepository = joinToUsRepository;
             this.mapper = mapper;
         }
-
-        public async Task Create(CreateUserDto createUserDto)
-        {
-            var user = mapper.Map<User>(createUserDto);
-
-            await joinToUsRepository.Create(user);
-        }
-
-        public async Task<IEnumerable<CreateUserDto>> GetAll()
+        public async Task<IEnumerable<CreateUserDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             var users = await joinToUsRepository.GetAll();
             var dtos = mapper.Map<IEnumerable<CreateUserDto>>(users);
