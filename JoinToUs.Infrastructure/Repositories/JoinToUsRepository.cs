@@ -25,6 +25,19 @@ namespace JoinToUs.Infrastructure.Repositories
             await ctx.SaveChangesAsync();
         }
 
+        public async Task<User> GetUserByEmail(string email)
+            => await (from user in ctx.Users
+                            join password in ctx.Passwords on user.Id equals password.UserId
+                            where user.Email == email
+                            select new User
+                            {
+                                UserName = user.UserName,
+                                Email = user.Email,
+                                PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : "Empty",
+                                PasswordHash = new List<Password> { new Password() { PasswordHash = password.PasswordHash } }
+                            }
+                              ).FirstAsync();
+
         public async Task<IEnumerable<User>> GetAll()
            => await (from user in ctx.Users
                               join password in ctx.Passwords on user.Id equals password.UserId

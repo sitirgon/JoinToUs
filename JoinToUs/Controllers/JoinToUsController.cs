@@ -1,6 +1,7 @@
 ﻿using JoinToUs.Application.EntitiesDto.CreateUser;
 using JoinToUs.Application.JoinToUs.Command.CreateUserCommand;
 using JoinToUs.Application.JoinToUs.Queries.GetAllUsers;
+using JoinToUs.Application.JoinToUs.Queries.GetUserByEmail;
 using JoinToUs.Domain.Entities.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,13 @@ namespace JoinToUsController.MVC
         public IActionResult Create() 
         {
             return View();
+        }
+
+        [Route("JoinToUs/{email}/Details")]
+        public async Task<IActionResult> Details(string email) 
+        {
+            var dto = await mediator.Send(new GetUserByEmailQuery(email));
+            return View(dto);
         }
 
         [HttpPost]
