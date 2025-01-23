@@ -10,7 +10,7 @@ namespace JoinToUs.Domain.Entities.User
     {
         public User()
         {
-            
+            this.PasswordHash = new List<Password>();
         }
         public string UserName { get; set; } 
         public string Email { get; set; }

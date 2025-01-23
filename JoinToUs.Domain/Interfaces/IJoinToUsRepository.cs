@@ -12,6 +12,7 @@ namespace JoinToUs.Domain.Interfaces
         Task Create(User user);
         Task<User?> GetUserByUserName(string username);
         Task<IEnumerable<User>> GetAll();
-        Task<User> GetUserByEmail(string email);
+        Task<User?> GetUserByEmail(string email);
+        Task Commit();
     }
 }

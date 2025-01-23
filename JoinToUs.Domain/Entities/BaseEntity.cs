@@ -8,7 +8,7 @@ namespace JoinToUs.Domain.Entities
 {
     public class BaseEntity: AuditableEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

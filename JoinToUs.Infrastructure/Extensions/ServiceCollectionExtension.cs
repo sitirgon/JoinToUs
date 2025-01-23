@@ -25,7 +25,10 @@ namespace JoinToUs.Infrastructure.Extensions
                 throw new InvalidOperationException("Connection string 'JoinToUs' is not found.");
             }
 
-            services.AddDbContext<JoinToUsDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<JoinToUsDbContext>(options =>
+                { options.UseSqlServer(connectionString);
+                  options.EnableSensitiveDataLogging();
+                });
 
             services.AddScoped<JoinToUsSeeder>();
 
